@@ -25,7 +25,6 @@ async def criar_conta(
     db: Annotated[AsyncSession, Depends(get_db)],
     usuario: Annotated[Usuario, Depends(get_current_user)],
 ) -> ContaOut:
-    # Gerar número de conta único (maior número existente + 1)
     result = await db.execute(select(func.max(Conta.numero)))
     max_numero = result.scalar() or 0
 

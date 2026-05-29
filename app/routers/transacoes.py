@@ -16,7 +16,6 @@ router = APIRouter(prefix="/transacoes", tags=["Transações"])
 async def _get_conta_do_usuario(
     conta_id: int, usuario: Usuario, db: AsyncSession
 ) -> Conta:
-    """Helper: busca a conta e valida que pertence ao usuário autenticado."""
     result = await db.execute(select(Conta).where(Conta.id == conta_id))
     conta = result.scalar_one_or_none()
 
